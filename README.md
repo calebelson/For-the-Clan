@@ -1,4 +1,4 @@
-# ForTheClan WoW Addon
+# For The Clan WoW Addon
 
 A World of Warcraft addon that automatically yells and plays sounds when you receive major haste/heroism effects. Perfect for announcing important raid buffs and roleplay activities!
 
@@ -16,7 +16,7 @@ A World of Warcraft addon that automatically yells and plays sounds when you rec
 ## Installation
 
 ### CurseForge (Recommended)
-*Coming soon*
+Search "For The Clan" on CurseForge or [go here](https://www.curseforge.com/wow/addons/for-the-clan) to download directly.
 
 ### Manual Installation
 1. Download the addon files from the GitHub repository
@@ -33,7 +33,7 @@ A World of Warcraft addon that automatically yells and plays sounds when you rec
 - **Slash Commands**: 
   - `/ftc` - Open configuration
   - `/fortheclan` - Open configuration
-- **Options Panel**: Found in Interface → AddOns → ForTheClan
+- **Options Panel**: Found in Interface → AddOns → For The Clan
 
 ### Configuration
 1. Click the minimap button or use a slash command
@@ -134,6 +134,19 @@ ForTheClan/
 
 ## Version History
 
+- **1.1.3**: Bug fix
+  - Fixed "Nothing" yell option to properly disable yells instead of sending "Nothing"
+- **1.1.2**: Sound system improvement
+  - Fixed sound play button functionality on initial configuration load
+- **1.1.1**: UI enhancements
+  - Added immediate minimap button toggle functionality
+  - Improved user interface responsiveness
+- **1.1.0**: Enhanced user experience
+  - Added sound preview functionality with play button
+  - Added yell text display with quotes for better clarity
+  - Improved configuration window layout
+- **1.0.1**: Compatibility update
+  - Updated interface version for latest WoW compatibility
 - **1.0.0**: Initial release
   - LibDBIcon minimap integration
   - Multi-language sound and yell support
