@@ -1,7 +1,7 @@
-## Interface: 50400
+## Interface: 110200, 50500
 ## Title: ForTheClan
 ## Notes: Automatically yells and plays sounds when receiving specific buffs
-## Author: YourName
+## Author: Dawby
 ## Version: 1.0.0
 ## SavedVariables: ForTheClanDB
 
