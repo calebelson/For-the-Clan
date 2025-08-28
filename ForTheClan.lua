@@ -119,10 +119,6 @@ local function CreateMinimapIcon()
     print("ForTheClan: Minimap icon created with LibDBIcon")
 end
 
--- LibDBIcon support
-local LibDBIcon
-local forTheClanLDB
-
 -- Create configuration window
 local function CreateConfigWindow()
     configFrame = CreateFrame("Frame", "ForTheClanConfigFrame", UIParent, "BasicFrameTemplateWithInset")
@@ -143,7 +139,7 @@ local function CreateConfigWindow()
     local yellDropdown = CreateFrame("Frame", nil, configFrame, "UIDropDownMenuTemplate")
     yellDropdown:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -50)
     
-    local yellText = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    local yellText = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
     yellText:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -30)
     yellText:SetText("Yell:")
     
@@ -189,10 +185,10 @@ local function CreateConfigWindow()
     
     -- Sound dropdown
     local soundDropdown = CreateFrame("Frame", nil, configFrame, "UIDropDownMenuTemplate")
-    soundDropdown:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -120)
+    soundDropdown:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -140)
     
-    local soundText = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    soundText:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -100)
+    local soundText = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    soundText:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -120)
     soundText:SetText("Sound:")
     
     UIDropDownMenu_SetWidth(soundDropdown, 200)
@@ -235,16 +231,15 @@ local function CreateConfigWindow()
     
     -- Show Minimap Button checkbox
     local minimapCheckbox = CreateFrame("CheckButton", nil, configFrame, "UICheckButtonTemplate")
-    minimapCheckbox:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -180)
+    minimapCheckbox:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -200)
     minimapCheckbox:SetChecked(not ForTheClanDB.minimap.hide)
     minimapCheckbox:SetScript("OnClick", function(self)
         ForTheClanDB.minimap.hide = not self:GetChecked()
-        if LibDBIcon then
-            if ForTheClanDB.minimap.hide then
-                LibDBIcon:Hide("ForTheClan")
-            else
-                LibDBIcon:Show("ForTheClan")
-            end
+        
+        if ForTheClanDB.minimap.hide then
+            LibDBIcon:Hide("ForTheClan")
+        else
+            LibDBIcon:Show("ForTheClan")
         end
     end)
     
