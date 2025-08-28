@@ -66,9 +66,9 @@ local yellList = {
     {display = "Italian", yell = "Per l'Orda"},
     {display = "Korean", yell = "호드를 위하여!"},
     {display = "Portuguese", yell = "Pela Horda!"},
-    {display = "Russian", yell = "За Орду!!"},
+    {display = "Russian", yell = "За Орду!"},
     {display = "Spanish", yell = "¡Por la Horda!"},
-    {display = "Nothing", yell = "Nothing"}
+    {display = "Nothing", yell = ""}
 }
 
 -- Initialize configuration if not exists
@@ -157,7 +157,7 @@ local function CreateConfigWindow()
     -- Yell preview text
     local yellPreview = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     yellPreview:SetPoint("LEFT", yellDropdown, "RIGHT", 10, 2)
-    yellPreview:SetText('"' .. (ForTheClanDB.yell or "为了部落") .. '"')
+    yellPreview:SetText((ForTheClanDB.yell or "为了部落"))
     yellPreview:SetTextColor(0.8, 1, 0.8) -- Light green color
     
     UIDropDownMenu_Initialize(yellDropdown, function(self, level)
@@ -169,7 +169,7 @@ local function CreateConfigWindow()
             info.func = function(self)
                 ForTheClanDB.yell = yellData.yell
                 UIDropDownMenu_SetText(yellDropdown, yellData.display)
-                yellPreview:SetText('"' .. yellData.yell .. '"') -- Update preview
+                yellPreview:SetText(yellData.yell) -- Update preview
             end
             UIDropDownMenu_AddButton(info)
         end
