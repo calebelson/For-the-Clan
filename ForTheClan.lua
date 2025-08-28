@@ -50,10 +50,10 @@ local soundList = {
     {display = "German", file = "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeDE.mp3"},
     {display = "Italian", file = "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeIT.mp3"},
     {display = "Korean", file = "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeKR.mp3"},
-    {display = "Latin America", file = "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeLA.mp3"},
     {display = "Portuguese", file = "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeBR.mp3"},
     {display = "Russian", file = "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeRU.mp3"},
-    {display = "Spanish", file = "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeES.mp3"},
+    {display = "Spanish - EU", file = "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeES.mp3"},
+    {display = "Spanish - LA", file = "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeLA.mp3"},
     {display = "Nothing", file = "Nothing"}
 }
 
@@ -139,18 +139,12 @@ local function CreateConfigWindow()
     title:SetPoint("TOP", configFrame, "TOP", 0, -5)
     title:SetText("ForTheClan Configuration")
     
-    -- Note about yell restrictions
-    local note = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    note:SetPoint("TOP", title, "BOTTOM", 0, -8)
-    note:SetText("Note: Automated yell messages are blocked outside of instances")
-    note:SetTextColor(1, 0.8, 0)
-    
     -- Yell dropdown
     local yellDropdown = CreateFrame("Frame", nil, configFrame, "UIDropDownMenuTemplate")
-    yellDropdown:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -60)
+    yellDropdown:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -50)
     
     local yellText = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    yellText:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -40)
+    yellText:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 20, -30)
     yellText:SetText("Yell:")
     
     UIDropDownMenu_SetWidth(yellDropdown, 200)
@@ -166,6 +160,12 @@ local function CreateConfigWindow()
     end
     UIDropDownMenu_SetText(yellDropdown, currentDisplay)
     
+    -- Yell preview text
+    local yellPreview = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    yellPreview:SetPoint("LEFT", yellDropdown, "RIGHT", 10, 2)
+    yellPreview:SetText('"' .. (ForTheClanDB.yell or "为了部落") .. '"')
+    yellPreview:SetTextColor(0.8, 1, 0.8) -- Light green color
+    
     UIDropDownMenu_Initialize(yellDropdown, function(self, level)
         for _, yellData in ipairs(yellList) do
             local info = UIDropDownMenu_CreateInfo()
@@ -175,10 +175,17 @@ local function CreateConfigWindow()
             info.func = function(self)
                 ForTheClanDB.yell = yellData.yell
                 UIDropDownMenu_SetText(yellDropdown, yellData.display)
+                yellPreview:SetText('"' .. yellData.yell .. '"') -- Update preview
             end
             UIDropDownMenu_AddButton(info)
         end
     end)
+    
+    -- Note about yell restrictions
+    local note = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    note:SetPoint("TOPLEFT", yellDropdown, "BOTTOMLEFT", 5, -5)
+    note:SetText("Note: Automated yell messages are blocked outside of instances")
+    note:SetTextColor(1, 0.8, 0)
     
     -- Sound dropdown
     local soundDropdown = CreateFrame("Frame", nil, configFrame, "UIDropDownMenuTemplate")
@@ -214,6 +221,16 @@ local function CreateConfigWindow()
             end
             UIDropDownMenu_AddButton(info)
         end
+    end)
+    
+    -- Play button for sound testing
+    local playButton = CreateFrame("Button", nil, configFrame, "GameMenuButtonTemplate")
+    playButton:SetSize(60, 25)
+    playButton:SetPoint("LEFT", soundDropdown, "RIGHT", 10, 2)
+    playButton:SetText("Play")
+    playButton:SetScript("OnClick", function()
+        local soundFile = ForTheClanDB.sound or "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeCN.mp3"
+        PlaySoundFile(soundFile, "Master")
     end)
     
     -- Show Minimap Button checkbox
