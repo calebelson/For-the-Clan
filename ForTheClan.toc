@@ -1,5 +1,5 @@
 ## Interface: 110200, 50500
-## Title: ForTheClan
+## Title: For The Clan
 ## Notes: Automatically yells and plays sounds when receiving specific buffs
 ## Author: Dawby
 ## Version: 1.0.0
@@ -10,4 +10,3 @@ libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
 libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
 libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
 ForTheClan.lua
-

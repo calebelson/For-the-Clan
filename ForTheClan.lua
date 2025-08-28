@@ -100,7 +100,7 @@ local function CreateMinimapIcon()
     -- Create the data object
     forTheClanLDB = LDB:NewDataObject("ForTheClan", {
         type = "launcher",
-        text = "ForTheClan",
+        text = "For The Clan",
         icon = "Interface\\AddOns\\ForTheClan\\assets\\HordeSymbolIcon64",
         OnClick = function(self, button)
             if button == "LeftButton" then
@@ -108,15 +108,13 @@ local function CreateMinimapIcon()
             end
         end,
         OnTooltipShow = function(tooltip)
-            tooltip:AddLine("ForTheClan")
+            tooltip:AddLine("For The Clan")
             tooltip:AddLine("Left click to open configuration", 1, 1, 1)
         end,
     })
     
     -- Register with LibDBIcon
     LibDBIcon:Register("ForTheClan", forTheClanLDB, ForTheClanDB.minimap)
-    
-    print("ForTheClan: Minimap icon created with LibDBIcon")
 end
 
 -- Create configuration window
@@ -133,7 +131,7 @@ local function CreateConfigWindow()
     -- Title
     local title = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
     title:SetPoint("TOP", configFrame, "TOP", 0, -5)
-    title:SetText("ForTheClan Configuration")
+    title:SetText("For The Clan")
     
     -- Yell dropdown
     local yellDropdown = CreateFrame("Frame", nil, configFrame, "UIDropDownMenuTemplate")
@@ -194,7 +192,7 @@ local function CreateConfigWindow()
     UIDropDownMenu_SetWidth(soundDropdown, 200)
     
     -- Get current sound display name
-    local currentSound = ForTheClanDB.sound or "Interface\\AddOns\\ForTheClan\\sounds\\ForTheHordeCN.mp3"
+    local currentSound = ForTheClanDB.sound or "Interface\\AddOns\\ForTheClan\\assets\\sounds\\ForTheHordeCN.mp3"
     local currentDisplayName = "Chinese"
     for _, soundData in ipairs(soundList) do
         if soundData.file == currentSound then
@@ -281,11 +279,11 @@ local activeBuffs = {}
 -- Create addon options panel
 local function CreateAddonOptionsPanel()
     local panel = CreateFrame("Frame")
-    panel.name = "ForTheClan"
+    panel.name = "For The Clan"
     
     local title = panel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
     title:SetPoint("TOPLEFT", 16, -16)
-    title:SetText("ForTheClan Settings")
+    title:SetText("For The Clan")
     
     local description = panel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
     description:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
@@ -326,8 +324,6 @@ end
 local function Initialize()
     InitializeConfig()
     CreateMinimapIcon()
-    
-    print("|cFF00FF00ForTheClan|r addon loaded! Use /ftc or the minimap button to configure.")
 end
 
 -- Handle all events in one place
